@@ -17,9 +17,10 @@ seja, primeiro executamos o processo depois testamos a condição.
 
 */
 
-#include<stdio.h>
+#include <stdio.h>
 
-int main(){
+int main()
+{
 
-	printf("Resposta no código.\n");
+    printf("Resposta no código.\n");
 }
