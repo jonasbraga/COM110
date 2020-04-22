@@ -13,7 +13,7 @@ int main()
         {
             if (x == 3 && i == 2)
             {
-                printf("SEJA BEM-VINDO #");
+                printf("SEJA BEM-VINDO   #");
             }
             else
             {
