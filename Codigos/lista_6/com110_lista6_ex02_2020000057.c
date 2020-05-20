@@ -32,7 +32,7 @@ int main()
     }
     printf("\nNota do %dº aluno: %d", l + 1, questoes_corretas[l]);
   }
-  printf("\n%d%% dos alunos foram aprovados!\n", (aprovados * 100)/10);
+  printf("\n%d0%% dos alunos foram aprovados!\n", aprovados);
 
   return 0;
 }
