@@ -9,6 +9,8 @@ const int MAZE_ROWS = 25;
 const int MAZE_COLUMNS = 20;
 const int KEYS = 4;
 const int COINS = 10;
+const int PORTA_X = 10;
+const int PORTA_Y = 24;
 
 // declarando funções
 void showMenu();
@@ -38,8 +40,8 @@ int main (){
 // função para gerar o labirinto e as funcionalidades do jogo
 void showMaze(){
 
-  // declaração das chaves, posição do jogador e da porta de saida
-  int quantKeys = 0, posX = 2, posY = 0, portaX = 10, portaY = 24;
+  // declaração das chaves, posição do jogador
+  int quantKeys = 0, posX = 2, posY = 0;
 
   // labirinto
   char action = ' ', maze[25][20] = {
@@ -148,7 +150,7 @@ void showMaze(){
 
     // abre a porta de saida quando o jogador adquire todas as chaves
     if(quantKeys == 4){
-      maze[portaY][portaX] = ' ';
+      maze[PORTA_Y][PORTA_X] = ' ';
     }    
   }
 }
@@ -197,7 +199,7 @@ void showCalcScore(){
 /*
 ʕ•ᴥ•ʔ  checklist  ʕ•ᴥ•ʔ
 
-gcc ./Codigos/projeto_final/Versão\ 1/main.c -o exe -lm && ./exe
+gcc ./Codigos/projeto_final/Versão1/main.c -o exe -lm && ./exe
 
 fantasminha: 
 [ ] => gamer over quando relar no fantasminha
