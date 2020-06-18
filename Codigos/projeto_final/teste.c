@@ -98,12 +98,38 @@ void showCalcScore(){
   int score = 1;
   printf("Score: %d\n", score);
 }
+
+/*
+ʕ•ᴥ•ʔ  checklist  ʕ•ᴥ•ʔ
+
+repl.it: gcc ./Codigos/projeto_final/Versão1/main.c -o exe -lm && ./exe
+
+fantasminha: 
+[ ] => if (posJogador == posFantasma) {showGameOver}
+[ ] => deixar 4* fixos no mapa
+[ ] => fazer logica para ele sumir de loop em loop
+[ ] => fazer logica para ele spawnar aleatoriamente
+
+unicode: 
+[ ] => arrumar desenhinho pra tudo
+[ ] => ajustar os ifs e etc usando o formato do unicode
+
+moedinha:
+[ ] => fazer 10 moedas spawnando aleatorimente no mapa
+[ ] => if (posJogador == posMoeda) {score++}
+
+*/
+
 /* 
 void showMazeUnicode(){
 
   clearScreen();
-  // chave unicode 0x1F5DD   
-  // arvore unicode 0x1F332
+  // joao
+  // maria
+  // chave 0x1F5DD   
+  // arvore 0x1F332
+  // mao dada U+1F46B
+
   setlocale(LC_CTYPE, "");
   wchar_t maze[15][30] = {
     {0x1F332,0x1F332,0x1F466,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332,0x1F332},

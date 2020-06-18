@@ -7,7 +7,7 @@
 // declarando constantes
 const int MAZE_ROWS = 25;
 const int MAZE_COLUMNS = 20;
-const int KEYS = 4;
+const int KEYS = 3;
 const int COINS = 10;
 const int PORTA_X = 10;
 const int PORTA_Y = 24;
@@ -16,7 +16,6 @@ const int PORTA_Y = 24;
 void showMenu();
 void showGameOver();
 void showGameClear();
-void showCalcScore();
 void showMaze();
 void clearScreen();
 
@@ -32,7 +31,6 @@ struct Key
 int main (){
   srand(time(0));     
   rand();
-
   showMenu();
   return 0;
 }
@@ -100,11 +98,15 @@ void showMaze(){
     printf("\n");
     clearScreen();
 
-    showCalcScore();
+    // mostrar o score do jogador
+    int score = 1;
+    printf("Score: %d\n", score);
+
+    // mostrar as chaves coletadas
     printf("Chaves coletadas: %d\n\n", quantKeys);
 
       if(quantKeys == KEYS){
-        printf("Você coletou todas as chaves! A saída da floresta foi desbloqueada!\n\n");
+        printf("Você coletou todas as chaves! A casa da bruxa foi aberta!\n\n");
       }else if (quantKeys == KEYS - 1){
         printf("Resta apenas 1 chave para ser coletada!\n\n");
       }else{
@@ -118,6 +120,7 @@ void showMaze(){
       printf("\n");
     }
 
+    // ações do jogador
     printf("\n Cima (w)\n Esquerda (a)\n Baixo (s)\n Direita (d)\n\n");
     scanf("%c", &action);
 
@@ -148,26 +151,29 @@ void showMaze(){
       }
     }
 
-    // abre a porta de saida quando o jogador adquire todas as chaves
-    if(quantKeys == 4){
+    // a casa é aberta quando o jogador adquire todas as chaves
+    if(quantKeys == KEYS){
       maze[PORTA_Y][PORTA_X] = ' ';
     }    
   }
 }
 
+// função para gerar o menu principal
 void showMenu(){
   char option = ' ';
 
   clearScreen();
-  printf("\n====== BEM VINDO AO LABIRINTO ======");
-  printf("\n==                                ==");
-  printf("\n==                                ==");
-  printf("\n==            START(1)            ==");
-  printf("\n==            SAIR (2)            ==");
-  printf("\n==                                ==");
-  printf("\n==                                ==");
-  printf("\n====================================");
-  printf("\n");
+  printf("\n======== BEM VINDO AO LABIRINTO ========");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n==              START(1)              ==");
+  printf("\n==                                    ==");
+  printf("\n==              SAIR (2)              ==");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n========================================");printf("\n");
 
   scanf("%c", &option);
   if(option == '1'){
@@ -175,49 +181,23 @@ void showMenu(){
   }
 }
 
+// função para gerar a tela de fim de jogo
 void showGameOver(){
   clearScreen();
-  printf("\n====================================");
-  printf("\n==                                ==");
-  printf("\n==                                ==");
-  printf("\n==              GAME              ==");
-  printf("\n==              OVER              ==");
-  printf("\n==                                ==");
-  printf("\n==                                ==");
-  printf("\n====================================");printf("\n");
+  printf("\n========================================");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n==                VOCÊ                ==");
+  printf("\n==               PERDEU               ==");
+  printf("\n==                 😔                  ==");
+  printf("\n==                                    ==");
+  printf("\n==                                    ==");
+  printf("\n==  aperte x para jogar novamente...  ==");
+  printf("\n==                                    ==");
+  printf("\n========================================");printf("\n");
 }
 
+// função para limpar a tela
 void clearScreen(){
   system("clear");
 }
-
-void showCalcScore(){
-  int score = 1;
-  printf("Score: %d\n", score);
-}
-
-/*
-ʕ•ᴥ•ʔ  checklist  ʕ•ᴥ•ʔ
-
-gcc ./Codigos/projeto_final/Versão1/main.c -o exe -lm && ./exe
-
-fantasminha: 
-[ ] => gamer over quando relar no fantasminha
-[ ] => deixar 4* fixos no mapa
-[ ] => Fazer logica para ele sumir de loop em loop
-[ ] => Fazer logica para ele spawnar aleatoriamente
-
-unicode: 
-[ ] => arrumar iconezinho pra tudo
-[ ] => colocar nesse main.c
-[ ] => ajustar os if usando os codigos do unicode
-
-moedinha:
-[ ] => 10 moedinhas random no mapa
-[ ] => if posBonequinho == posMoedinha {score++}
-
-labirinto: 
-[x] => aumentar ele (25x20 tá ok)
-
-ʕっ•ᴥ•ʔっ me da um abraço po favo <3
-*/
