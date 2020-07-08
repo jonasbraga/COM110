@@ -6,3 +6,4 @@ asd;700
 asdas;1000
 dsaasa;600
 s;700
+Giulia;800

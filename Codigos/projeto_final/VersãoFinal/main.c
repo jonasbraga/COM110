@@ -1,8 +1,24 @@
-// gcc ./Codigos/projeto_final/VersãoFinal/main_2.c -o exe -lm && ./exe
+// gcc ./Codigos/projeto_final/VersãoFinal/main.c -o exe -lm && ./exe
+
+/*
+  Giulia Garcia Castro Rodrigues (2020000191)
+  Jonas Henrique Santos Braga (2020000057)
+  Thaissa Guedes Ribeiro (2020011622)
+
+  Objetivo: encontrar as chaves, pegar doces no caminho, não cair nas armadilhas, fugir da bruxa e salvar Maria.
+
+  Regras do jogo: o jogador deverá pegar 3 chaves espalhadas no labirinto para abrir a porta e conseguir chegar até Maria. A bruxa muda de lugar frequentemente e encostar nela ou cair em uma armadilha gera o fim de jogo. Há doces espalhados pelo mapa que valem 100 pontos cada.
+
+  - Funções
+  - Ponteiro
+  - Registro
+  - Vetor / Matriz
+  - Arquivo
+*/
 
 // ----- declaração dos caracteres especiais unicode ----- //
 #define KEY 0X1F5DD
-#define MARIA 0x1F467  
+#define MARIA 0x1F467
 #define JOAO 0x1F466
 #define TREE 0x1F332
 #define SPACE 0x0020
@@ -77,7 +93,6 @@ int main (){
   rand();
   setPermissionFile();
   showGameStory();
-
   return 0;
 }
 
@@ -244,14 +259,6 @@ void showMaze(char username[]){
       {TREE,TREE,TREE,TREE,TREE,TREE,TREE,TREE,TREE,TREE,MARIA,TREE,TREE,TREE,TREE,TREE,TREE,TREE,TREE,TREE}
   };
 
-    // desenha o labirinto
-    for(int i = 0; i < MAZE_ROWS; i++){
-      for(int j = 0; j < MAZE_COLUMNS; j++){
-        wprintf(L" %lc", maze[i][j]);
-      }
-      wprintf(L"\n");
-    }
-
   // onde o jogador começa no labirinto
   maze[posY][posX] = JOAO;
 
@@ -330,13 +337,13 @@ void showMaze(char username[]){
     // mostra as chaves coletadas
     wprintf(L"Chaves coletadas: %d\n\n", quantKeys);
 
-      if(quantKeys == KEYS){
-        wprintf(L"Você coletou todas as chaves! A casa da bruxa foi aberta!\n\n");
-      }else if (quantKeys == KEYS - 1){
-        wprintf(L"Resta apenas 1 chave para ser coletada!\n\n");
-      }else{
-        wprintf(L"Restam %d chaves para serem coletadas!\n\n", KEYS - quantKeys);
-      }
+    if(quantKeys == KEYS){
+      wprintf(L"Você coletou todas as chaves! A casa da bruxa foi aberta!\n\n");
+    }else if (quantKeys == KEYS - 1){
+      wprintf(L"Resta apenas 1 chave para ser coletada!\n\n");
+    }else{
+      wprintf(L"Restam %d chaves para serem coletadas!\n\n", KEYS - quantKeys);
+    }
 
     // desenha o labirinto
     for(int i = 0; i < MAZE_ROWS; i++){
@@ -392,10 +399,10 @@ void showMaze(char username[]){
           break;
       }
 
-    // a casa é aberta quando o jogador adquire todas as chaves
-    if(quantKeys == KEYS){
-      maze[PORTA_Y][PORTA_X] = SPACE;
-    }
+      // a casa é aberta quando o jogador adquire todas as chaves
+      if(quantKeys == KEYS){
+        maze[PORTA_Y][PORTA_X] = SPACE;
+      }
 
     // game over
     }else if(maze[y][x] == witch.symbol){
@@ -421,9 +428,11 @@ void showRanking(){
 
   char option = ' ';
 
+  // armazena os dados dos jogadores no arquivo
   FILE *rankingFile;
   rankingFile = fopen(FILEPATH, "r");
 
+  // aparece o ranking e divide o username do score do mesmo
   if(rankingFile != NULL){
     char usersScore[100] = "";
     wprintf(L"\n========================================\n");
@@ -535,11 +544,6 @@ void showGameClear(char username[], int score){
   }
 }
 
-// ----- função para garantir todas as permissões do arquivo ----- //
-void setPermissionFile(){
-  system("chmod -R 777 ranking.txt");
-} 
-
 // ----- função para salvar a pontuação do jogador ----- //
 void saveScore(char username[], int score){
   FILE *rankingFile;
@@ -562,6 +566,11 @@ void saveScore(char username[], int score){
     printf("Não foi possível abrir o arquivo");
   }
 }
+
+// ----- função para garantir todas as permissões do arquivo ----- //
+void setPermissionFile(){
+  system("chmod -R 777 ranking.txt");
+} 
 
 // ----- função para limpar a tela ----- //
 void clearScreen(){
